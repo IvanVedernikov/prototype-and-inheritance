@@ -1,9 +1,12 @@
 var Track = function (params) {
   this.name = params.name;
   this.url = params.url;
-  this.playTrack = function () {
+  // this.playTrack = function () {
+  //   console.log('We play ' + this.name);
+  // }
+};
+Track.prototype.playTrack = function () {
     console.log('We play ' + this.name);
-  }
 };
 
 var track01 = new Track({
@@ -21,3 +24,31 @@ console.log(track02);
 
 track01.playTrack();
 track02.playTrack();
+
+var YoutubeTrack = function (params) {
+  Track.apply(this, arguments);
+  this.image = params.image;
+}
+
+YoutubeTrack.prototype = Object.create(Track.prototype);
+YoutubeTrack.prototype.constructor = YoutubeTrack;
+YoutubeTrack.prototype.playTrack = function () {
+  console.log('Hello youtube', this.name);
+};
+
+var youtubeTrack01 = new YoutubeTrack({
+  name: 'youtubeTrack01',
+  url: 'youtubeTrack01.mp3',
+  image: 'youtubeTrack01.jpg'
+});
+
+var youtubeTrack02 = new YoutubeTrack({
+  name: 'youtubeTrack02',
+  url: 'youtubeTrack02.mp3',
+  image: 'youtubeTrack02.jpg'
+});
+
+console.log(youtubeTrack01);
+console.log(youtubeTrack02);
+
+youtubeTrack01.playTrack();
