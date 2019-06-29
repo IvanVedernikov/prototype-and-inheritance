@@ -1,6 +1,9 @@
 var Track = function (params) {
   this.name = params.name;
   this.url = params.url;
+  this.playTrack = function () {
+    console.log('We play ' + this.name);
+  }
 };
 
 var track01 = new Track({
@@ -15,3 +18,6 @@ var track02 = new Track({
 
 console.log(track01);
 console.log(track02);
+
+track01.playTrack();
+track02.playTrack();
