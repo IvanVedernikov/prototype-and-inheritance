@@ -1,21 +1,28 @@
 
-var counterModule = (function (jQ) {
-  var counter = 0;
+var counterModule = (function () {
+  var counter = 0,
+  instance;
 
   var incrementCounter = function () {
     counter++;
   }
 
   var getCounter = function () {
-
-    console.log(jQ('body'));
     return counter;
   }
+
+  var createInstance = function () {
+    return {
+      getCounter: getCounter,
+      incrementCounter: incrementCounter
+    };
+  }
   return {
-    incrementCounter: incrementCounter,
-    getCounter: getCounter
+    getInstance: function () {
+      return instance || (createInstance());
+    }
   };
-})(jQuery)
+})()
 
 
 
